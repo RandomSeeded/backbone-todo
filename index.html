@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Todo</title>
+  </head>
+  <body>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="todoModel.js"></script>
+    <script src="todoCollection.js"></script>
+    <script src="todoEntryView.js"></script>
+    <script src="todoCollectionView.js"></script>
+    <h1>Todo</h1>
+    <div class="todo-container">
+      <form class="todo-form">
+        <input type="text" class="todo-form-text" placeholder="TODO" />
+        <input type="submit">
+      </form>
+      <div class="todo-list">
+      </div>
+    </div>
+    <script>
+      $(function() {
+        // INITIALIZATION
+        var todos = new Todos();
+        var todosView = new TodoCollectionView({collection: todos});
+
+        // SUBMISSION
+        $('.todo-form').submit(function(e) {
+          e.preventDefault();
+          var todoText = $('.todo-form-text').val();
+          var myModel = new TodoModel({task: todoText});
+          todos.add(myModel);
+        });
+
+        // REMOVAL
+      });
+    </script>
+  </body>
+</html>
